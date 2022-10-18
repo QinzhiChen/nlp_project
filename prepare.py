@@ -97,6 +97,7 @@ def prepare_readme_data(df,column):
     
     df['stemmed'] = clean_tokens.apply(stem)
     df['lemmatized'] = clean_tokens.apply(lemma)
+    df['clean_tokens']=clean_tokens
     return df
 
 
