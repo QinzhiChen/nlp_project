@@ -15,10 +15,11 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier, export_graphviz
 from sklearn.metrics import classification_report
+import prepare
 
 
 # In[3]:
-
+df=prepare.wrangle_data()
 
 def make_word_list(df):
     """ creates a list of every not unique word in dataframe"""
