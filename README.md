@@ -79,7 +79,7 @@
 
 ### Summary link
 
-- https://docs.google.com/presentation/d/16OJMqrVQVK5rhsMfJ8tBbMo1kPForpWMpO9zs0waHx8/edit?usp=sharing
+- We created 5 pages [slide](https://docs.google.com/presentation/d/16OJMqrVQVK5rhsMfJ8tBbMo1kPForpWMpO9zs0waHx8/edit?usp=sharing)in google slide. Which talks about overall findings, conclusions, modeling and next steps.
 
 ### Conclusion
 - The decision tree bags of word has best outcome in our training model
