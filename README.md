@@ -77,6 +77,10 @@
 
 ## Conclusions & Google slides summary link
 
+### Summary link
+
+- https://docs.google.com/presentation/d/16OJMqrVQVK5rhsMfJ8tBbMo1kPForpWMpO9zs0waHx8/edit?usp=sharing
+
 ### Conclusion
 - The decision tree bags of word has best outcome in our training model
 - We used that, and was able to achived 50% accuracy
