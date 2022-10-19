@@ -9,6 +9,9 @@
 
 - While the data we collected is static, the Github repositories are dynamic and ever-changing. Therefore is important to note the data was collected from these repositories on the morning of October 18, 2022.
 
+## Project goal
+
+- The stated goal of this project is to predict the main progamming language of a repository on Github based on the commensurate README file contents.
 
 ## Project Dictionary
 
@@ -34,10 +37,6 @@
 |percent_non_single|Percentage of words that appeared more than once|
 
 
-## Project goal
-
-- The stated goal of this project is to predict the main progamming language of a repository on Github based on the commensurate README file contents.
-
 ## Project plan
 
 - data science across all domains can usually be generalized as the following steps. We used this as our framework to make our plan.
@@ -58,9 +57,9 @@
 ## Initial Questions/Hypotheses
 
 ### Question 1
-- Q1 What are the most common words in READMEs?
+- What are the most common words in READMEs?
 ### Question 2
-- Q2 Does the length of the README vary by programming language? If not whether the bigram different per language?
+- Does the length of the README vary by programming language? If not whether the bigram different per language?
 ### Question 3
 - Do different programming languages use a different number of unique words? if yes, whether there can find some corelation between the languages?
 #### Hypothesis
