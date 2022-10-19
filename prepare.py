@@ -104,8 +104,8 @@ def prepare_readme_data(df,column):
 # In[51]:
 
 
-def wrangle_data():
-    data = pd.read_json('data.json')
+def wrangle_data(target):
+    data = target
     return prepare_readme_data(data, 'readme_contents')
 
 

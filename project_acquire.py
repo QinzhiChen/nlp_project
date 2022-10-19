@@ -15,7 +15,7 @@ import csv
 from typing import Dict, List, Optional, Union, cast
 
 
-# In[2]:
+# In[ ]:
 
 
 '''extra a repo list 
@@ -24,8 +24,8 @@ if the repo list csv is not existed, we extract it use the url and put it into c
 if not os.path.isfile("repo.csv"):
 
     repos = []
-    for i in range(1, 50):
-        url = f'https://github.com/search?o=desc&q={i}:%3E1&s=forks&type=Repositories'
+    for i in range(1, 101):
+        url = f'https://github.com/search?o=desc&p={i}&q=stars%3A%3E0&s=stars&type=Repositories'
         response = requests.get(url)
         soup = BeautifulSoup(response.content, 'html.parser')
 
@@ -33,13 +33,27 @@ if not os.path.isfile("repo.csv"):
             repos.append(element.text)
 
         time.sleep(10)
+        print(f'Getting page {i} of 100', end='')
 
     with open('repo.csv', 'w') as createfile:
         wr = csv.writer(createfile, quoting=csv.QUOTE_ALL)
         wr.writerow(repos)
 
 
-# In[4]:
+# In[ ]:
+
+
+'''with the local csv file that has the repo,
+read the file and extra a list of name and equal it to REPOS
+this is an environment set up for the prepare and aquire'''
+results = []
+with open('repo.csv', newline='') as inputfile:
+    results = list(csv.reader(inputfile))
+                
+REPOS = [item for sublist in results for item in sublist]
+
+
+# In[8]:
 
 
 """
@@ -58,20 +72,6 @@ To create the `data.json` file that contains the data.
 # TODO: Add your github username to your env.py file under the variable `github_username`
 # TODO: Add more repositories to the `REPOS` list below.
 
-
-# In[ ]:
-
-
-'''with the local csv file that has the repo,
-read the file and extra a list of name and equal it to REPOS
-this is an environment set up for the prepare and aquire'''
-results = []
-with open('repo.csv', newline='') as inputfile:
-    results = list(csv.reader(inputfile))
-                
-REPOS = [item for sublist in results for item in sublist]
-
-
 headers = {"Authorization": f"token {github_token}", "User-Agent": github_username}
 
 if headers["Authorization"] == "token " or headers["User-Agent"] == "":
@@ -80,7 +80,7 @@ if headers["Authorization"] == "token " or headers["User-Agent"] == "":
     )
 
 
-# In[5]:
+# In[9]:
 
 
 '''use the url we have to create a function that will extra the response_date from json file'''
@@ -95,7 +95,7 @@ def github_api_request(url: str) -> Union[List, Dict]:
     return response_data
 
 
-# In[6]:
+# In[10]:
 
 
 '''use the api to extra repo that will give as what repo language it is for exploration use'''
@@ -114,7 +114,7 @@ def get_repo_language(repo: str) -> str:
     )
 
 
-# In[7]:
+# In[11]:
 
 
 ''' create a function with an api that will extra the repo contents '''
@@ -129,7 +129,7 @@ def get_repo_contents(repo: str) -> List[Dict[str, str]]:
     )
 
 
-# In[8]:
+# In[12]:
 
 
 def get_readme_download_url(files: List[Dict[str, str]]) -> str:
@@ -143,7 +143,7 @@ def get_readme_download_url(files: List[Dict[str, str]]) -> str:
     return ""
 
 
-# In[9]:
+# In[13]:
 
 
 def process_repo(repo: str) -> Dict[str, str]:
@@ -164,7 +164,7 @@ def process_repo(repo: str) -> Dict[str, str]:
     }
 
 
-# In[10]:
+# In[14]:
 
 
 def scrape_github_data() -> List[Dict[str, str]]:
@@ -174,7 +174,7 @@ def scrape_github_data() -> List[Dict[str, str]]:
     return [process_repo(repo) for repo in REPOS]
 
 
-# In[11]:
+# In[ ]:
 
 
 '''create a local file for data.json'''
