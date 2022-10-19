@@ -231,7 +231,7 @@ def bigram_clean(exp_df):
         .fillna(0)
         .apply(lambda s: s.astype(int)))
 
-def vis_cloud(exp_df):
+def vis_cloud1(exp_df):
     '''create a visualized word cloud for all words'''
 
     all_words = (' '.join(exp_df.clean_tokens))
@@ -271,14 +271,62 @@ def vis_cloud(exp_df):
     axs[0].imshow(all_cloud)
     axs[1].imshow(js_cloud)
     axs[2].imshow(tS_cloud)
-    axs[3].imshow(py_cloud)
-    axs[4].imshow(go_cloud)
-    axs[5].imshow(c_cloud)
-    
+#     axs[3].imshow(py_cloud)
+#     axs[4].imshow(go_cloud)
+#     axs[5].imshow(c_cloud)
     axs[0].set_title('All Words')
     axs[1].set_title('JavaScript')
     axs[2].set_title('TypeScript')
-    axs[1].set_title('Python')
+#     axs[3].set_title('Python')
+#     axs[4].set_title('Go')
+#     axs[5].set_title('C++')
+
+    for ax in axs: ax.axis('off')
+
+def vis_cloud2(exp_df):
+    '''create a visualized word cloud for all words'''
+
+    all_words = (' '.join(exp_df.clean_tokens))
+    all_words = re.sub(r'[^\w\s]', '', all_words).split()
+    all_freq = pd.Series(all_words).value_counts()
+
+    js_words = (' '.join(exp_df[exp_df.language == 'JavaScript'].clean_tokens))
+    js_words = re.sub(r'[^\w\s]', '', js_words).split()
+    js_freq = pd.Series(js_words).value_counts()
+
+    tS_words = (' '.join(exp_df[exp_df.language == 'TypeScript'].clean_tokens))
+    tS_words = re.sub(r'[^\w\s]', '', tS_words).split()
+    tS_freq = pd.Series(tS_words).value_counts()
+
+    py_words = (' '.join(exp_df[exp_df.language == 'Python'].clean_tokens))
+    py_words = re.sub(r'[^\w\s]', '', py_words).split()
+    py_freq = pd.Series(py_words).value_counts()
+
+    go_words = (' '.join(exp_df[exp_df.language == 'Go'].clean_tokens))
+    go_words = re.sub(r'[^\w\s]', '', go_words).split()
+    go_freq = pd.Series(go_words).value_counts()
+
+    c_words = (' '.join(exp_df[exp_df.language == 'C++'].clean_tokens))
+    c_words = re.sub(r'[^\w\s]', '', c_words).split()
+    c_freq = pd.Series(c_words).value_counts()
+    
+    all_cloud = WordCloud(background_color='white', height=1000, width=400).generate(' '.join(all_words))
+    js_cloud = WordCloud(background_color='white', height=600, width=800).generate(' '.join(js_words))
+    tS_cloud = WordCloud(background_color='white', height=600, width=800).generate(' '.join(tS_words))
+    py_cloud = WordCloud(background_color='white', height=600, width=800).generate(' '.join(py_words))
+    go_cloud = WordCloud(background_color='white', height=600, width=800).generate(' '.join(go_words))
+    c_cloud = WordCloud(background_color='white', height=600, width=800).generate(' '.join(c_words))
+    
+    plt.figure(figsize=(10, 8))
+    axs = [plt.axes([0, 0, .5, 1]), plt.axes([.5, .5, .5, .5]), plt.axes([.5, 0, .5, .5])]
+
+
+    axs[0].imshow(py_cloud)
+    axs[1].imshow(go_cloud)
+    axs[2].imshow(c_cloud)
+
+    axs[0].set_title('Python')
+    axs[1].set_title('Go')
     axs[2].set_title('C++')
 
     for ax in axs: ax.axis('off')
